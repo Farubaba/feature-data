@@ -5,7 +5,7 @@
 
 	<groupId>com.farubaba</groupId>
 	<artifactId>feature-data</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>feature-data</name>
@@ -55,4 +55,66 @@
 			<version>0.0.1</version>
 		</dependency>
 	</dependencies>
+  	<build>
+    	<finalName>feature-data</finalName>
+    	<!-- 插件统一管理 -->
+	    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+	      <plugins>
+	        <plugin>
+	          <artifactId>maven-clean-plugin</artifactId>
+	          <version>3.0.0</version>
+	        </plugin>
+	        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+	        <plugin>
+	          <artifactId>maven-resources-plugin</artifactId>
+	          <version>3.0.2</version>
+	        </plugin>
+	        <plugin>
+	          <artifactId>maven-compiler-plugin</artifactId>
+	          <version>3.7.0</version>
+	        </plugin>
+	        <plugin>
+	          <artifactId>maven-surefire-plugin</artifactId>
+	          <version>2.20.1</version>
+	        </plugin>
+	        <plugin>
+	          <artifactId>maven-install-plugin</artifactId>
+	          <version>2.5.2</version>
+	        </plugin>
+	      </plugins>
+	    </pluginManagement>
+	    
+	    <!-- 引入插件 -->
+	     <plugins>
+	    	<!-- 打包源码包 -->
+	    	<plugin>
+	            <artifactId>maven-source-plugin</artifactId>
+	            <version>2.1</version>
+	            <configuration>
+	                <attach>true</attach>
+	            </configuration>
+	            <executions>
+	                <execution>
+	                    <phase>compile</phase>
+	                    <goals>
+	                        <goal>jar</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
+	        </plugin>
+    	</plugins>
+  	</build>
+  
+  	<distributionManagement>
+		<repository>
+		   <!-- 
+		   		https://bintray.com/farubaba/java
+		   		用户名  repository  package
+		   		farubaba/java/feature-dat
+		   -->
+		   <id>bintray-farubaba-java</id>
+		   <name>farubaba-java</name>
+		   <url>https://api.bintray.com/maven/farubaba/java/feature-data/;publish=1</url>
+		</repository>
+	</distributionManagement>
 </project>
